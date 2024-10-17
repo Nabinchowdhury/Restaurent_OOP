@@ -39,9 +39,11 @@ class Menu:
         pass
 
     def show_menu(self):
+        print('--------------------------')
         for pizza in self.pizzas:
             print(f'item: {pizza.name} price: {pizza.price}')
         for burger in self.burgers:
             print(f'item: {burger.name} price: {burger.price}')
         for drink in self.drinks:
             print(f'item: {drink.name} price: {drink.price}')
+        print('--------------------------')
