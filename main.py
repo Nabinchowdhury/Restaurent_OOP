@@ -1,4 +1,6 @@
 from Menu import Pizza, Burger, Drinks, Menu
+from Restaurent import Restaurent
+from Users import Manager, Chef, Server
 def main():
     menu = Menu()
     pizza_1 = Pizza('sausage pizza', 500, 'large', ['sausage', 'sauase', 'onion'])
@@ -19,5 +21,16 @@ def main():
     menu.add_menu_item('drinks', coffee)
 
     menu.show_menu()
+
+    restaurent = Restaurent('new restaurent', 2000, menu)
+    manager = Manager('kala chan manager', 1234, 'kala@Chan.com', 'kalia bazar', 1000, '1 Jan, 2020', 'manager')
+    restaurent.add_employee('manager', manager)
+    chef = Manager('rustom baburchi', 4321, 'Rustom@baburchi.com', 'rustam dighi', 300, '1 Feb, 2020', 'chef')
+    restaurent.add_employee('chef', chef)
+    server = Manager('chota server', 2143, 'chotu@chikna.com', 'choto rastar more', 100, '1 March, 2020', 'server')
+    restaurent.add_employee('server', server)
+    
+    restaurent.show_employees()
+
 if __name__ == '__main__':
     main()
