@@ -23,13 +23,15 @@ class Restaurent:
     
     def add_order(self, order):
         self.orders.append(order)
-        
+
     def receive_payment(self, order, amount, customer):
         if amount >= order.bill:
             self.revenue += order.bill
             self.balance += order.bill
             customer.due_amount = 0
             return amount - order.bill
+        else:
+            print('Not enough Money, give more')
         
     def pay_expense(self, amount, description):
         if amount < self.balance:
@@ -41,7 +43,9 @@ class Restaurent:
     
     def pay_salary(self, employee):
         if employee.salary < self.balance:
-            employee.receive_salary()
+            employee.receive_salary(employee.salary)
+            self.expense += employee.salary 
+            self.balance -= employee.salary 
     
     def show_employees(self):
         print('-----------------------------')

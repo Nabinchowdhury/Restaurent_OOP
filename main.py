@@ -26,7 +26,7 @@ def main():
     restaurent = Restaurent('new restaurent', 2000, menu)
     manager = Manager('kala chan manager', 1234, 'kala@Chan.com', 'kalia bazar', 1000, '1 Jan, 2020', 'manager')
     restaurent.add_employee('manager', manager)
-    chef = Chef('rustom baburchi', 4321, 'Rustom@baburchi.com', 'rustam dighi', 300, '1 Feb, 2020', 'chef', 'everything')
+    chef = Chef('rustom baburchi', 4321, 'Rustom@baburchi.com', 'rustam dighi', 3000, '1 Feb, 2020', 'chef', 'everything')
     restaurent.add_employee('chef', chef)
     server = Server('chota server', 2143, 'chotu@chikna.com', 'choto rastar more', 100, '1 March, 2020', 'server')
     restaurent.add_employee('server', server)
@@ -34,14 +34,28 @@ def main():
     restaurent.show_employees()
 
     customer_1 = Customer('sabik', 5000, 9876, 'sakib@khan.com', 'onek dure')
-    order_1 = Order(customer_1, [pizza_1, coke])
+    order_1 = Order(customer_1, [pizza_1, coke, pizza_2, pizza_3, burger_1, burger_2, coffee])
     customer_1.pay_for_order(order_1) 
     restaurent.add_order(order_1)
+    amount_returned = restaurent.receive_payment(order_1, 10000, customer_1)
+    print(amount_returned, f'to {customer_1.name}')
 
-    ammount_returned = restaurent.receive_payment(order_1, 2000, customer_1)
-    print(ammount_returned)
-    print(restaurent.revenue, restaurent.balance)
+    customer_2 = Customer('nabik', 5000, 9876, 'nakib@khan.com', 'onek bohu dure')
+    order_2 = Order(customer_2, [pizza_1, coke, pizza_2, pizza_3, burger_1, burger_2, coffee])
+    customer_2.pay_for_order(order_2) 
+    restaurent.add_order(order_2)
+    amount_returned = restaurent.receive_payment(order_2, 20000, customer_2)
+
+    print(amount_returned, f'to {customer_2.name}')
+    print('revenue', restaurent.revenue, 'restaurent balance', restaurent.balance)
     
+    restaurent.pay_expense(restaurent.rent, 'rent')
+    print('after rent revenue', restaurent.revenue, 'restaurent balance', restaurent.balance)
+    
+    print(f'before salaray chef due {chef.due}')
+    restaurent.pay_salary(chef)
+    print('after salary revenue', restaurent.revenue, 'restaurent balance', restaurent.balance)
+    print(f'after salaray chef due {chef.due}')
 
 if __name__ == '__main__':
     main()
