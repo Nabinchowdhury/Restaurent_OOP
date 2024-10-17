@@ -14,6 +14,7 @@ class Customer(User):
         self.email = email
         self.address = address
         self.__order = None
+        self.due_amount = 0
         super().__init__(name, phone, email, address)
 
     @property
@@ -26,6 +27,7 @@ class Customer(User):
 
     def place_order(self, order):
         self.order = order
+        self.due_amount += order.bill
         print(f'{self.name} has placed an order {order.items}')
     
     def eat_food(self, order):

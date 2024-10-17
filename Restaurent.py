@@ -1,6 +1,7 @@
 class Restaurent:
     def __init__(self, name, rent, menu = []) -> None:
         self.name = name
+        self.orders= []
         self.chef = None
         self.server = None
         self.manager = None
@@ -19,7 +20,10 @@ class Restaurent:
                 self.server = employee
             case 'manager':
                 self.manager = employee
-            
+    
+    def add_order(self, order):
+        self.orders.append(order)
+        
     def receive_payment(self, order, amount, customer):
         if amount >= order.bill:
             self.revenue += order.bill
